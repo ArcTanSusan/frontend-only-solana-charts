@@ -180,6 +180,9 @@ const HomePage = () => {
   }, []); // Empty dependency array since we want this to run once on mount
 
   // Effect to update all-time data and market cap data when countryCurrencies changes
+  // TODO: Make use of a redux-like global store to track API response of API_URL such that
+  // I can re-use getAllTimeDataByCountryCurrency() and getMarketCapByCountryCurrency() inside
+  // removeCountryCurrency().
   useEffect(() => {
     if (countryCurrencies.length > 0) {
       const fetchData = async () => {
