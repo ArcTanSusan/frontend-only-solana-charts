@@ -5,7 +5,8 @@ Create a multi-view dashboard that transforms complex price and comment data int
 ## How to run
 
 ```shell
-cd my-app
+git clone git@github.com:ArcTanSusan/frontend-only-solana-charts.git
+cd frontend-only-solana-charts
 yarn install
 yarn start
 ```
