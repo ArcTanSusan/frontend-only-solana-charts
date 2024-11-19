@@ -10,6 +10,8 @@ yarn install
 yarn start
 ```
 
+A localdev browser starts up at http://localhost:3000/.
+
 ### What I did
 
 I've created a comprehensive dashboard component that visualizes Solana price data in three different charts:
@@ -20,7 +22,7 @@ I've created a comprehensive dashboard component that visualizes Solana price da
 
 Show some fake comments with timestamps at the bottom of the page.
 
-Used styled React components, material UI library for basic UI components, and rechart for the charts.
+Used styled React components, material UI library, and rechart library.
 
 ### Diagrams
 
@@ -38,16 +40,17 @@ Used styled React components, material UI library for basic UI components, and r
 
 - Decided to show the coingecko API data in the form of bar charts,
   because most of [the coingecko data](https://api.coingecko.com/api/v3/coins/solana) is distributed by country currency.
-- Coingeck API doesn't have the data for solana coin price over time that I can easily render. There's no time series data in the coingecko API.
+- Coingecko API doesn't have the data for solana coin price over time that I can easily render. There's no time series data in the coingecko API.
 - Used react hooks to keep track of each of the 3 bar charts.
 - Created a `useEffect()` for 1st time app load.
 - Created a 2nd `useEffect()` for re-rendering the chart when you remove a currency country from dropdown selector.
 
 Any additional features or improvements you would add given more time?
 
+- Would be nice to create a generic SolanaChart react component for all 3 bar charts.
 - Would be nice to create a multi-seector dropdown to remove multiple country currencies.
 - Would be nice to refactor 2nd `useEffect()` to make use of a global storage.
 - Would be nice to to have additional strict typescript interfaces inside `fetchData()`.
 - Would be nice to show a more exact coin price over time.
-- Would be nice to do more secure API key management.
+- Would be nice to do more secure API key management for the coingecko API.
 - Would be nice to to have unit tests & e2e tests.
