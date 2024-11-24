@@ -7,6 +7,7 @@ import {
   Activity,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@mui/material';
+import styled from 'styled-components';
 
 interface BasicStatsPoint {
   currentPrice: number;
@@ -15,10 +16,50 @@ interface BasicStatsPoint {
   totalVolume: number;
   marketCap: number;
 }
-
 interface BasicStatsProps {
   basicInfo: BasicStatsPoint;
 }
+
+const CardTitle = styled.h2`
+  font-size: 24px;
+  font-weight: 600;
+`;
+
+const Subtitle = styled.h2`
+  font-size: 18px;
+  font-weight: 600;
+`;
+
+// Styled components
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  transition: box-shadow 0.2s ease;
+`;
+
+const IconContainer = styled.div`
+  background-color: #e9d8fd;
+  border-radius: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+`;
+
+const Label = styled.span`
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+`;
+
+const Value = styled.span`
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111827;
+`;
 
 const StatItem = ({
   icon: Icon,
@@ -29,15 +70,21 @@ const StatItem = ({
   label: string;
   value: string;
 }) => (
-  <div className="flex items-center p-4 bg-white rounded-lg shadow-sm">
-    <div className="p-3 bg-purple-100 rounded-full">
-      <Icon className="w-6 h-6 text-purple-600" />
+  <Container>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.15rem',
+      }}
+    >
+      <IconContainer>
+        <Icon style={{ width: '1.25rem', height: '0.5rem' }} />
+      </IconContainer>
+      <Label>{label}:</Label>
+      <Value>{value}</Value>
     </div>
-    <div className="ml-4">
-      <p className="text-sm font-medium text-gray-500">{label}</p>
-      <p className="text-lg font-semibold text-gray-900">{value}</p>
-    </div>
-  </div>
+  </Container>
 );
 
 export const BasicStats = memo(({ basicInfo }: BasicStatsProps) => {
@@ -60,7 +107,7 @@ export const BasicStats = memo(({ basicInfo }: BasicStatsProps) => {
     {
       icon: BarChart2,
       label: 'Total Volume',
-      value: `$${basicInfo.totalVolume.toLocaleString()}`,
+      value: basicInfo.totalVolume.toLocaleString(),
     },
     {
       icon: DollarSign,
@@ -70,27 +117,22 @@ export const BasicStats = memo(({ basicInfo }: BasicStatsProps) => {
   ];
 
   return (
-    <Card className="max-w-4xl mx-auto bg-gray-50">
+    <Card>
       <CardHeader>
-        <div className="space-y-2">
-          <h2 className="text-2xl font-bold text-center text-gray-900">
-            Solana Charts
-          </h2>
-          <div className="w-16 h-1 mx-auto bg-purple-500 rounded-full" />
-        </div>
+        <h2>Solana Charts</h2>
       </CardHeader>
       <CardContent>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <CardTitle>Basic Stats about Solana</CardTitle>
+        <Subtitle>Real-time statistics and market data</Subtitle>
+        <div>
           {stats.map((stat, index) => (
             <StatItem key={index} {...stat} />
           ))}
         </div>
-        <div className="mt-8 text-center">
-          <blockquote className="italic text-gray-600">
-            "Life's biggest gains often happen away from the charts."
-            <footer className="mt-2 text-sm text-gray-500">— Anonymous</footer>
-          </blockquote>
-        </div>
+        <blockquote>
+          "Life's biggest gains often happen away from the charts."
+          <footer>— Anonymous</footer>
+        </blockquote>
       </CardContent>
     </Card>
   );

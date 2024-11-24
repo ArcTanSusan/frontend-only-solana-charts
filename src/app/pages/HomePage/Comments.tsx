@@ -144,7 +144,7 @@ const CommentSection = () => {
   return (
     <CommentSectionContainer>
       <DiscussionHeader>
-        <DiscussionTitle>Discussion</DiscussionTitle>
+        <DiscussionTitle>Hard-coded Fake Discussion</DiscussionTitle>
         <CommentCount>
           <MessageCircle size={20} />
           <span>{commentsData.length} Comments</span>

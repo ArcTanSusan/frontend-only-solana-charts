@@ -44,17 +44,18 @@ const HomePage = () => {
     marketCap: 0,
   });
   const [value, setValue] = React.useState(0);
-  const [countryCurrencies, setCountryCurrencies] = useState([]);
 
-  const dropdownOptions = countryCurrencies.map(curr => ({
+  const [countryCurrencies, setCountryCurrencies] = useState<string[]>([]);
+  const deepCopy = JSON.parse(JSON.stringify(countryCurrencies));
+
+  const dropdownOptions = deepCopy.map(curr => ({
     value: curr,
     label: curr,
   }));
 
-  const removeCountryCurrency = event => {
-    const countryCurrToRemove = event.target.value.toLowerCase();
+  const removeCountryCurrencies = countriesToRemove => {
     setCountryCurrencies(prevCurrencies =>
-      prevCurrencies.filter(curr => curr !== countryCurrToRemove),
+      prevCurrencies.filter(curr => !countriesToRemove.includes(curr)),
     );
   };
 
@@ -182,7 +183,7 @@ const HomePage = () => {
   // Effect to update all-time data and market cap data when countryCurrencies changes
   // TODO: Make use of a redux-like global store to track API response of API_URL such that
   // I can re-use getAllTimeDataByCountryCurrency() and getMarketCapByCountryCurrency() inside
-  // removeCountryCurrency().
+  // removeCountryCurrencies().
   useEffect(() => {
     if (countryCurrencies.length > 0) {
       const fetchData = async () => {
@@ -273,7 +274,9 @@ const HomePage = () => {
           </ResponsiveContainer>
           <BasicSelect
             items={dropdownOptions}
-            handleChange={event => removeCountryCurrency(event)}
+            handleChange={event => removeCountryCurrencies(event)}
+            inputLabel="Remove Country Currency"
+            label="Country Currency"
           />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
@@ -309,7 +312,9 @@ const HomePage = () => {
           </ResponsiveContainer>
           <BasicSelect
             items={dropdownOptions}
-            handleChange={event => removeCountryCurrency(event)}
+            handleChange={event => removeCountryCurrencies(event)}
+            inputLabel="Remove Country Currency"
+            label="Country Currency"
           />
         </CustomTabPanel>
       </Box>
