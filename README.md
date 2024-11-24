@@ -11,7 +11,13 @@ yarn install
 yarn start
 ```
 
-A localdev browser starts up at http://localhost:3000/.
+A localdev browser starts up at http://localhost:3000/. You should be able to see this 1-page React app:
+
+![Homepage](./diagrams/HomePage.png)
+
+You can select multiple country currencies to remove in the last 2 tabs:
+
+![DropDownSelector](/diagrams/Dropdown_Selector.png)
 
 ### What I did
 
@@ -49,9 +55,7 @@ Used styled React components, material UI library, and rechart library.
 Any additional features or improvements you would add given more time?
 
 - Would be nice to create a generic SolanaChart react component for all 3 bar charts.
-- Would be nice to create a multi-seector dropdown to remove multiple country currencies.
 - Would be nice to refactor 2nd `useEffect()` to make use of a global storage.
 - Would be nice to to have additional strict typescript interfaces inside `fetchData()`.
-- Would be nice to show a more exact coin price over time.
 - Would be nice to do more secure API key management for the coingecko API.
 - Would be nice to to have unit tests & e2e tests.
